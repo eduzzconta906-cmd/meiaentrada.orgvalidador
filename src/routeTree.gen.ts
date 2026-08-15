@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChavesPublicasRouteImport } from './routes/chaves-publicas'
 import { Route as LeiDaMeiaEntradaRouteImport } from './routes/lei-da-meia-entrada'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChavesPublicasRoute = ChavesPublicasRouteImport.update({
+  id: '/chaves-publicas',
+  path: '/chaves-publicas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LeiDaMeiaEntradaRoute = LeiDaMeiaEntradaRouteImport.update({
@@ -25,27 +31,31 @@ const LeiDaMeiaEntradaRoute = LeiDaMeiaEntradaRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chaves-publicas': typeof ChavesPublicasRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chaves-publicas': typeof ChavesPublicasRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chaves-publicas': typeof ChavesPublicasRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lei-da-meia-entrada'
+  fullPaths: '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lei-da-meia-entrada'
-  id: '__root__' | '/' | '/lei-da-meia-entrada'
+  to: '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
+  id: '__root__' | '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChavesPublicasRoute: typeof ChavesPublicasRoute
   LeiDaMeiaEntradaRoute: typeof LeiDaMeiaEntradaRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chaves-publicas': {
+      id: '/chaves-publicas'
+      path: '/chaves-publicas'
+      fullPath: '/chaves-publicas'
+      preLoaderRoute: typeof ChavesPublicasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lei-da-meia-entrada': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChavesPublicasRoute: ChavesPublicasRoute,
   LeiDaMeiaEntradaRoute: LeiDaMeiaEntradaRoute,
 }
 export const routeTree = rootRouteImport
