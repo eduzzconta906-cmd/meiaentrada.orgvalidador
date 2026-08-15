@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChavesPublicasRouteImport } from './routes/chaves-publicas'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LeiDaMeiaEntradaRouteImport } from './routes/lei-da-meia-entrada'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ChavesPublicasRoute = ChavesPublicasRouteImport.update({
   path: '/chaves-publicas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LeiDaMeiaEntradaRoute = LeiDaMeiaEntradaRouteImport.update({
   id: '/lei-da-meia-entrada',
   path: '/lei-da-meia-entrada',
@@ -32,30 +38,34 @@ const LeiDaMeiaEntradaRoute = LeiDaMeiaEntradaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chaves-publicas': typeof ChavesPublicasRoute
+  '/faq': typeof FaqRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chaves-publicas': typeof ChavesPublicasRoute
+  '/faq': typeof FaqRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chaves-publicas': typeof ChavesPublicasRoute
+  '/faq': typeof FaqRoute
   '/lei-da-meia-entrada': typeof LeiDaMeiaEntradaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
+  fullPaths: '/' | '/chaves-publicas' | '/faq' | '/lei-da-meia-entrada'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
-  id: '__root__' | '/' | '/chaves-publicas' | '/lei-da-meia-entrada'
+  to: '/' | '/chaves-publicas' | '/faq' | '/lei-da-meia-entrada'
+  id: '__root__' | '/' | '/chaves-publicas' | '/faq' | '/lei-da-meia-entrada'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChavesPublicasRoute: typeof ChavesPublicasRoute
+  FaqRoute: typeof FaqRoute
   LeiDaMeiaEntradaRoute: typeof LeiDaMeiaEntradaRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChavesPublicasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lei-da-meia-entrada': {
       id: '/lei-da-meia-entrada'
       path: '/lei-da-meia-entrada'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChavesPublicasRoute: ChavesPublicasRoute,
+  FaqRoute: FaqRoute,
   LeiDaMeiaEntradaRoute: LeiDaMeiaEntradaRoute,
 }
 export const routeTree = rootRouteImport
