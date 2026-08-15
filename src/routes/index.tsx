@@ -52,12 +52,12 @@ function Home() {
         </div>
 
         <p className="mt-6 text-center text-base leading-relaxed text-foreground/90">
-          UNE atesta que Adriano Gustavo Cruz de Oliveira é estudante e está regularmente
+          UNE atesta que Leticia Pontes Zambrone é estudante e está regularmente
           matriculado(a) em Direito da instituição Uniao Capixaba de Ensino Superior - Uces
         </p>
 
         <section className="mt-8">
-          <Row label="Nome:" value="Adriano Gustavo Cruz de Oliveira" />
+          <Row label="Nome:" value="Leticia Pontes Zambrone" />
           <Row label="Instituição:" value="Uniao Capixaba de Ensino Superior - Uces" />
           <Row label="Curso:" value="Direito" />
           <Row label="Documento de Identificação:" value="000000001761351" />
