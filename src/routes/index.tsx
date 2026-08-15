@@ -64,7 +64,14 @@ function Home() {
         </section>
 
         <div className="mt-8 flex justify-center">
-          <div className="h-64 w-48 rounded-sm bg-muted" aria-hidden />
+          <img
+            src={fotoEstudante.url}
+            alt="Foto da estudante na Carteira de Identificação Estudantil"
+            width={182}
+            height={244}
+            className="h-[244px] w-[182px] rounded-sm object-cover"
+            loading="lazy"
+          />
         </div>
 
         <h2 className="mt-12 text-2xl font-semibold text-foreground">
